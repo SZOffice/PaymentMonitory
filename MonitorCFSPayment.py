@@ -54,7 +54,7 @@ start_time = (datetime.datetime.now()+datetime.timedelta(hours=-2)).strftime("%H
 def Checking_iPay88_Data(target_country):
     if target_country=='HK':
         ms_Conn = MSSQL(host="HKPDRSQL1",user="***********",pwd="*********",db="JobsDBHK")
-        sql = "SELECT PurchaseOrderID,AccountNum,SubAccount,PurchaseDate,PackageAmount,PaymentTermsID,PaymentTermsDesc,ResponseType,ResponsedBy FROM Billing_PurchaseOrder_Master WHERE PurchaseDate BETWEEN '"+start_time_format+"' and '"+end_time_format+"' and ResponsedBy =1 and PaymentTermsID=11 and ResponseType='P' order by PurchaseDate asc"
+        sql = "SELECT PurchaseOrderID,AccountNum,SubAccount,PurchaseDate,PackageAmount,PaymentTermsID,PaymentTermsDesc,ResponseType,ResponsedBy FROM Billing_PurchaseOrder_Master WHERE PurchaseDate BETWEEN '"+start_time_format+"' and '"+end_time_format+"' and ResponsedBy =1 and InvoiceID>0 and PaymentTermsID=11 and ResponseType='P' order by PurchaseDate asc"
     elif target_country=='TH':
         ms_Conn = MSSQL(host="THPDRSQL1",user="********",pwd="*********",db="JobsDBTH")
         sql = "SELECT PurchaseOrderID, AccountNum,SubAccount,PurchaseDate,PackageAmount,PaymentTermsID,PaymentTermsDesc,ResponseType,ResponsedBy FROM Billing_PurchaseOrder_Master WHERE PurchaseDate BETWEEN '"+start_time_format+"' and '"+end_time_format+"' and ResponsedBy =1 and PaymentTermsID=13 and ResponseType='P' order by PurchaseDate asc;"
